@@ -27,3 +27,17 @@ const li=document.createElement('li');
 
 
 ul.append(li);
+
+
+
+const btn = document.getElementById("btnRate");
+      const output = document.getElementById("output");
+
+      btn.addEventListener("click", () => {
+        const rates = document.getElementsByName("rate");
+        rates.forEach((rate) => {
+          if (rate.checked) {
+            output.innerText = `You selected:${rate.value}`;
+          }
+        });
+      });

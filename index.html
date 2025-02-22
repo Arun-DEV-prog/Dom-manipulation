@@ -55,16 +55,20 @@
 
     <script src="app.js"></script>
     <script>
-      const btn = document.getElementById("btnRate");
-      const output = document.getElementById("output");
+      const htmlCollection = document.getElementsByTagName("li");
+      const list = [
+        "getElementById",
+        "getElementsByClass",
+        "getElementsByTagName",
+        "getElementsByName",
+        "Eblish",
+      ];
 
-      btn.addEventListener("click", () => {
-        const rates = document.getElementsByName("rate");
-        rates.forEach((rate) => {
-          if (rate.checked) {
-            output.innerText = `You selected:${rate.value}`;
-          }
-        });
+      const items = Array.of(...htmlCollection);
+      items.forEach((item, index) => {
+        if (list[index]) {
+          item.innerText = list[index];
+        }
       });
     </script>
   </body>
