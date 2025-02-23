@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .comment {
+        border: 2px solid blue;
+        background-color: lightpink;
+        margin: 10px;
+        padding: 30px;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>My Awesome comment box. Write what in your mind!!!</h1>
+
+    <section>
+      <h3>All comments here</h3>
+
+      <div id="CommentDiv">
+        <p class="comment">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta
+          deleniti magnam distinctio. Mollitia, aspernatur repudiandae iure
+          cupiditate, odit aliquam expedita doloremque perspiciatis et eos ad
+          consectetur delectus modi dolores magni?
+        </p>
+        <p class="comment">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta
+          deleniti magnam distinctio. Mollitia, aspernatur repudiandae iure
+          cupiditate, odit aliquam expedita doloremque perspiciatis et eos ad
+          consectetur delectus modi dolores magni?
+        </p>
+        <p class="comment">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Soluta
+          deleniti magnam distinctio. Mollitia, aspernatur repudiandae iure
+          cupiditate, odit aliquam expedita doloremque perspiciatis et eos ad
+          consectetur delectus modi dolores magni?
+        </p>
+      </div>
+      <!-- 
+      <form action=""> -->
+      <textarea name="" id="commentText" rows="10" cols="50"></textarea>
+      <button id="postComment">Post</button>
+      <!-- </form> -->
+    </section>
+
+    <h1>My Github-Info</h1>
+    <input type="text" id="inputText" placeholder="Enter delete" />
+    <button id="BtnDelete" disabled>Delete</button>
+    <script>
+      let inputBtn = document.getElementById("inputText");
+
+      inputBtn.addEventListener("keyup", (event) => {
+        const text = event.target.value;
+        let BtnDelete = document.getElementById("BtnDelete");
+        if (text === "delete") {
+          BtnDelete.removeAttribute("disabled");
+        } else {
+          BtnDelete.setAttribute("disabled", true);
+        }
+      });
+
+      let post = document.getElementById("postComment");
+
+      post.addEventListener("click", () => {
+        let commentText = document.getElementById("commentText");
+
+        let text = commentText.value;
+        console.log(text);
+
+        let CommentDiv = document.getElementById("CommentDiv");
+
+        let pText = document.createElement("p");
+        pText.className = "comment";
+        pText.innerText = text;
+
+        CommentDiv.appendChild(pText);
+        //stor localStorage comments
+        let storeComments = JSON.parse(localStorage.getItem("comments")) || [];
+
+        storeComments.push(text);
+
+        localStorage.setItem("comments", JSON.stringify(storeComments));
+
+        commentText.value = "";
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        let storeComments = JSON.parse(localStorage.getItem("comments")) || [];
+
+        let CommentDiv = document.getElementById("CommentDiv");
+
+        storeComments.forEach((text) => {
+          let pText = document.createElement("p");
+          pText.className = "comment";
+          pText.innerText = text;
+          CommentDiv.appendChild(pText);
+        });
+      });
+    </script>
+    <script src="second.js"></script>
+  </body>
+</html>

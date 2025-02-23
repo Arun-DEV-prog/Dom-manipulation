@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="" />
+  </head>
+  <body>
+    <ul id="list">
+      <li>CSS</li>
+    </ul>
+
+    <ul id="menu">
+      <li>Home</li>
+      <li>Services</li>
+      <li>About</li>
+      <li>Contact</li>
+    </ul>
+
+    <button onclick="makeYellow()" id="btn">make Yellow</button>
+    <button id="loginBtn">Login form</button>
+    <!-- Hidden login from -->
+    <br /><br />
+    <div id="form">
+      <label for="">
+        Email
+        <input type="text" name="" id="" />
+      </label>
+      <label for="">
+        Email
+        <input type="text" name="" id="" />
+      </label>
+    </div>
+    <p id="name">Name:</p>
+    <input type="text" name="" id="inputName" />
+    <button id="btnUpdate">Update</button>
+    <script>
+      const btnUpdate = document.getElementById("btnUpdate");
+      const write = document.getElementById("name");
+
+      btnUpdate.addEventListener("click", () => {
+        const inputName = document.getElementById("inputName");
+        console.log(inputName);
+        name = inputName.value;
+        write.innerText = name;
+      });
+
+      let Btn = document.getElementById("loginBtn");
+      let form = document.getElementById("form");
+      form.style.display = "none";
+
+      function loginForm() {
+        Btn.addEventListener("click", () => {
+          form.style.display = "block";
+        });
+      }
+      loginForm();
+      function makeYellow() {
+        let Btn = document.querySelector("#btn");
+
+        if (document.body.style.backgroundColor === "yellow") {
+          document.body.style.backgroundColor = "red";
+          Btn.textContent = "yellow";
+        } else {
+          document.body.style.backgroundColor = "yellow";
+          Btn.textContent = "red";
+        }
+      }
+
+      let menu = document.querySelector("#menu");
+      let cloneMenu = menu.cloneNode(true);
+
+      cloneMenu.id = "menu mobile";
+      document.body.appendChild(cloneMenu);
+
+      let list = document.querySelector("#list");
+
+      list.insertAdjacentHTML("beforebegin", "<h2>Web Technology</h2>");
+      list.insertAdjacentHTML("afterbegin", "<li>HTML</li>");
+      list.insertAdjacentHTML("beforeend", "<li>Web Technology</li>");
+      list.insertAdjacentHTML("beforebegin", "<h2>Web Technology</h2>");
+    </script>
+  </body>
+</html>
